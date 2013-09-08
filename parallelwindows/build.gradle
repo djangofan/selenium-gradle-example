@@ -1,0 +1,85 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+group = 'selenium.webdriver.qa'
+
+ext {
+    projTitle = 'Parallel Windows'
+    projVersion = '1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':commonlib')
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.+'
+    compile group: 'commons-collections', name: 'commons-collections', version: '3.+'
+    compile group: 'junit', name: 'junit', version: '4.+'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.+'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.+'
+}
+
+tasks.withType(Test) {
+    jvmArgs '-Xms128m', '-Xmx1024m', '-XX:MaxPermSize=128m'
+    maxParallelForks = 4
+    testLogging.showStandardStreams = true
+    systemProperties['testProtocol'] = 'http'
+    systemProperties['testDomain'] = 'djangofan.github.io'
+    systemProperties['testPort'] = 80
+    systemProperties['testUri'] = '/html-test-site/site'
+    systemProperties['hubUrl'] = 'localhost'
+    systemProperties['hubPort'] = '4444'   
+}
+
+task runParallelTestsInFirefox(type: Test) {
+    description = 'Runs all JUnit test classes in parallel threads.'
+    include '**/TestHandleCache*.class'
+    reports.junitXml.destination = "$buildDir/test-results/ParallelTestsFF"  
+    reports.html.destination = "$buildDir/test-results/ParallelTestsFF"
+    
+    // System properties passed to tests
+    systemProperties['browserType'] = 'firefox'
+	
+    // initial browser size and position
+    systemProperties['windowXPosition'] = '100'
+    systemProperties['windowYPosition'] = '40'
+    systemProperties['windowWidth'] = '400'
+    systemProperties['windowHeight'] = '600'    
+}
+
+task runParallelTestsInIE(type: Test) {
+    description = 'Runs all JUnit test classes in parallel threads.'
+    include '**/TestHandleCache*.class'
+    reports.junitXml.destination = "$buildDir/test-results/ParallelTestsIE"  
+    reports.html.destination = "$buildDir/test-results/ParallelTestsIE"
+    
+    // System properties passed to tests
+    systemProperties['browserType'] = 'ie'
+    
+    // initial browser size and position
+    systemProperties['windowXPosition'] = '100'
+    systemProperties['windowYPosition'] = '40'
+    systemProperties['windowWidth'] = '400'
+    systemProperties['windowHeight'] = '600'    
+}
+
+task runFrameTestInIE(type: Test) {
+    description = 'Runs a test of handling iframes.'
+    maxParallelForks = 2
+    include '**/TestFrames*.class'
+    reports.junitXml.destination = "$buildDir/test-results/FrameTestsIE"  
+    reports.html.destination = "$buildDir/test-results/FrameTestsIE"
+    
+    // System properties passed to tests
+    systemProperties['browserType'] = 'ie'
+    
+    // initial browser size and position
+    systemProperties['windowXPosition'] = '100'
+    systemProperties['windowYPosition'] = '40'
+    systemProperties['windowWidth'] = '900'
+    systemProperties['windowHeight'] = '800'    
+    
+}
+

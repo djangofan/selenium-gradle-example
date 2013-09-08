@@ -1,0 +1,78 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+group = 'selenium.webdriver.qa'
+
+ext {
+    projTitle = 'WebDriver on Etsy'
+    projVersion = '1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':commonlib')
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.+'
+    compile group: 'commons-io', name: 'commons-io', version: '1.3.+'
+    compile group: 'junit', name: 'junit', version: '4.+'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.+'
+    compile group: 'net.sf.opencsv', name: 'opencsv', version: '2.+'
+}	
+
+tasks.withType(Test) {
+    // run tests with -info or -debug option to get logging
+    jvmArgs '-Xms128m', '-Xmx1024m', '-XX:MaxPermSize=128m'    
+    systemProperties['hubIP'] = '127.0.0.1'
+    systemProperties['hubPort'] = '4444'
+    systemProperties['testURL'] = 'https://www.etsy.com/'
+    systemProperties['windowXPosition'] = '40'
+    systemProperties['windowYPosition'] = '40'
+    systemProperties['windowWidth'] = '900'
+    systemProperties['windowHeight'] = '600'    
+}
+
+// single test tasks
+
+task runDebugSingle(type: Test) {
+    maxParallelForks = 1
+    systemProperties['browser'] = 'firefox'
+    include '**/DebugSingle.class'
+    reports.junitXml.destination = "$buildDir/test-results/DebugSingle"  
+    reports.html.destination = "$buildDir/test-results/DebugSingle"
+}
+
+task runParameterizedExample(type: Test) {
+   include '**/DataProviderTest.class'
+   // test output goes to default location
+}
+
+// parallel test tasks
+
+task runAllTestsInFirefox(type: Test) {
+    maxParallelForks = 2
+    systemProperties['browser'] = 'firefox'
+    include '**/EtsyTest*.class'
+    reports.junitXml.destination = "$buildDir/test-results/EtsyTestFF"  
+    reports.html.destination = "$buildDir/test-results/EtsyTestFF"
+}
+
+task runAllTestsInIE(type: Test) {
+    maxParallelForks = 2
+    systemProperties['browser'] = 'ie'
+    include '**/EtsyTest*.class'
+    reports.junitXml.destination = "$buildDir/test-results/EtsyTestIE"  
+    reports.html.destination = "$buildDir/test-results/EtsyTestIE"
+}
+
+task runAllTestsInChrome(type: Test) {
+    maxParallelForks = 2
+    systemProperties['browser'] = 'chrome'
+	systemProperties['webdriver.chrome.driver'] = project.projectDir.absolutePath + '\\..\\chromedriver.exe'
+	println 'Chrome driver location: ' + project.projectDir.absolutePath + '\\..\\chromedriver.exe'
+    include '**/EtsyTest*.class'
+    reports.junitXml.destination = "$buildDir/test-results/EtsyTestCH"  
+    reports.html.destination = "$buildDir/test-results/EtsyTestCH"
+}
+	

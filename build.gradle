@@ -1,0 +1,24 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+group = 'selenium.webdriver.qa'
+
+/**
+ *  This project is the one you should import from, while using the
+ *  Eclipse Gradle tooling plugins Import Project wizard, rather than
+ *  the root of the main Eclipse project.  This project otherwise
+ *  contains no code and does nothing in particular except host
+ *  the location of the settings.gradle which defines the flat layout.
+ */
+
+task identify {
+    println "-----------------------------------"
+    println "   _____               _ _          "
+    println "  / ____|             | | |         "
+    println " | |  __ _ __ __ _  __| | | ___     "
+    println " | | |_ | '__/ _` |/ _` | |/ _ \\    "
+    println " | |__| | | | (_| | (_| | |  __/    "
+    println "  \\_____|_|  \\__,_|\\__,_|_|\\___|    "
+    println ""
+    println "-----------------------------------"
+}
