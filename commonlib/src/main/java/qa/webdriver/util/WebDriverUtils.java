@@ -204,7 +204,7 @@ public abstract class WebDriverUtils extends CoreUtils {
 
 	public static void initializeRemoteBrowser( String type, String host, int port ) {
 		DesiredCapabilities dc = new DesiredCapabilities();
-		dc.setCapability( "takesScreenshot", false );
+		dc.setCapability( "takesScreenshot", true );
 		dc.setCapability( "webdriver.remote.quietExceptions", false );
 		try {
 			if ( type.equalsIgnoreCase( "firefox" ) ) {

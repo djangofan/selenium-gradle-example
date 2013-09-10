@@ -13,8 +13,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
-import org.openqa.selenium.By;
-
 import au.com.bytecode.opencsv.CSVReader;
 import qa.webdriver.util.EtsySearchPage;
 import qa.webdriver.util.WebDriverUtils;
@@ -68,14 +66,14 @@ public class EtsyTest2 extends WebDriverUtils {
 		gs.selectInEtsyDropdown( ddMatch );  
 		gs.clickSearchButton();
 		waitTimer(2, 1000);
-		getElementByLocator( By.cssSelector( "h1#etsy a" ) ).click(); // click Google logo
+		gs.clickEtsyLogo(); // click Etsy logo
 		classlogger.info("Page object test '{}' is done.", testName );
 	}
 
 	@Test
 	public void testFluentPageObject() {    	
 		classlogger.info("{} being run...", testName );
-		driver.get( System.getProperty("testURL") + "webhp?hl=en&tab=ww" );
+		driver.get( System.getProperty("testURL") );
 		EtsySearchPage esp = new EtsySearchPage();
 		esp.withFluent().clickSearchField()
 		.setSearchString( searchString ).waitForTime(2, 1000)
