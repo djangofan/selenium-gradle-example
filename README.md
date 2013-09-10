@@ -5,6 +5,9 @@ This is a Java project that can be used as a template (or archetype) to start a 
 Presentation is for "Portland Selenium Bootcamp 2013".  
 [PDX-SE Meetup Group](http://www.meetup.com/pdx-se/events/125285182/)
 
+Special thanks to this repo, for having some good examples.
+[Ken Sipe](https://github.com/kensipe/gradle-samples)
+
 # Versions
 
 Version 1.0 - March 16th, 2013
