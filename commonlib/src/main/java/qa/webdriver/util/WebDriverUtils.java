@@ -276,6 +276,21 @@ public abstract class WebDriverUtils extends CoreUtils {
 		return we;
 	}
 	
+		public static WebElement getElementByVisibility( final By locator ) {
+		LOGGER.info( "Get element by locator: " + locator.toString() );		
+		final long startTime = System.currentTimeMillis();
+		WebElement we = null;
+    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+        .withTimeout(30, TimeUnit.SECONDS)
+        .pollingEvery(5, TimeUnit.SECONDS)
+        .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
+    we = wait.until( ExpectedConditions.visibilityOfElementLocated( locator ) );
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		LOGGER.info("Searched for " + totalTime + " milliseconds." );
+		return we;
+	}
+	
 	public void showMessageInBrowser( String message ) {
 		message = "<HTML><HEAD><TITLE>Message</TITLE></HEAD><BODY>" + message + "</BODY></HTML>";
 		String script = "document.write( '" + message + "' );";
