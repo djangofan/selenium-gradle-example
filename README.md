@@ -8,6 +8,9 @@ Presentation is for "Portland Selenium Bootcamp 2013".
 Special thanks to the creator of Gradle, for having some good examples.
 [Ken Sipe](https://github.com/kensipe/gradle-samples)
 
+NOTE: Keep in mind that these examples use multiple WebDriver instances, which may not be a normal design
+pattern, especially in frameworks that are limited to one WebDriver instance, such as SauceLabs.
+
 # Versions
 
 Version 1.0 - March 16th, 2013
