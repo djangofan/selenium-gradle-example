@@ -12,10 +12,11 @@ echo "*"
 echo "*********************************************"
 echo ""
 
-chromedriverzip=chromedriver_linux64_2.3.zip
+chromever=2.4
+chromedriverzip=chromedriver_linux64.zip
 chromedriverbin=chromedriver
-jarfile="selenium-server-standalone-2.35.0.jar"
-wgetbin="/usr/bin/wget"
+jarfile=selenium-server-standalone-2.37.0.jar
+wgetbin=/usr/bin/wget
 
 if [ -z "${JAVA_HOME+xxx}" ]; then
   echo JAVA_HOME is not set at all;
@@ -46,7 +47,8 @@ if [ ! -f $chromedriverbin ]; then
   if [ ! -f $chromedriverzip ]; then
     echo "Downloading Selenium chromedriver file..."
     echo ""
-    $wgetbin --dot-style=binary --no-check-certificate https://chromedriver.googlecode.com/files/$chromedriverzip
+	
+    $wgetbin --dot-style=binary --no-check-certificate http://chromedriver.storage.googleapis.com/$chromever/$chromedriverzip
   else
     echo "Chrome driver was found in current directory."
     echo ""

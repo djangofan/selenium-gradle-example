@@ -6,10 +6,11 @@ TITLE %TITLETEXT%
 :: Proxy for Fiddler or for BrowserMob
 SET PROXY=false
 
-SET CHROMEDRIVERZIP=chromedriver_win32_2.3.zip
+SET CHROMEDRIVERZIP=chromedriver_win32.zip
+SET CHROMEDRIVERVER=2.4
 SET CHROMEDRIVER=chromedriver.exe
-SET JAR=selenium-server-standalone-2.35.0.jar
-SET IEDRIVERZIP=IEDriverServer_Win32_2.35.3.zip
+SET JAR=selenium-server-standalone-2.37.0.jar
+SET IEDRIVERZIP=IEDriverServer_Win32_2.37.0.zip
 SET IEDRIVER=IEDriverServer.exe
 SET "WGET=C:\Program Files (x86)\GnuWin32\bin\wget.exe"
  
@@ -48,7 +49,7 @@ ECHO Wget.exe is missing. & GOTO :ERROR
  
 IF NOT EXIST %CHROMEDRIVER% (
 IF EXIST "%WGET%" (
-"%WGET%" --dot-style=binary --no-check-certificate https://chromedriver.googlecode.com/files/%CHROMEDRIVERZIP%
+"%WGET%" --dot-style=binary --no-check-certificate http://chromedriver.storage.googleapis.com/%CHROMEDRIVERVER%/%CHROMEDRIVERZIP%
 jar.exe xvf %CHROMEDRIVERZIP%
 DEL /Q %CHROMEDRIVERZIP%
 ) ELSE (

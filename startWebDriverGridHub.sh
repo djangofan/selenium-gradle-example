@@ -12,8 +12,8 @@ echo "*"
 echo "*********************************************"
 echo ""
  
-jarfile="selenium-server-standalone-2.35.0.jar"
-wgetbin="/usr/bin/wget"
+jarfile=selenium-server-standalone-2.37.0.jar
+wgetbin=/usr/bin/wget
 
 if [ -z "${JAVA_HOME+xxx}" ]; then
   echo JAVA_HOME is not set at all;
