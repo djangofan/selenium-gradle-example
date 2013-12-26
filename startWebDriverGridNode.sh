@@ -12,10 +12,10 @@ echo "*"
 echo "*********************************************"
 echo ""
 
-chromever=2.4
+chromever=2.8
 chromedriverzip=chromedriver_linux64.zip
 chromedriverbin=chromedriver
-jarfile=selenium-server-standalone-2.37.0.jar
+jarfile=selenium-server-standalone-2.39.0.jar
 wgetbin=/usr/bin/wget
 
 if [ -z "${JAVA_HOME+xxx}" ]; then

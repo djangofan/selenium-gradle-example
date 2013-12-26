@@ -7,17 +7,17 @@ TITLE %TITLETEXT%
 SET PROXY=false
 
 SET CHROMEDRIVERZIP=chromedriver_win32.zip
-SET CHROMEDRIVERVER=2.4
+SET CHROMEDRIVERVER=2.8
 SET CHROMEDRIVER=chromedriver.exe
-SET JAR=selenium-server-standalone-2.37.0.jar
-SET IEDRIVERZIP=IEDriverServer_Win32_2.37.0.zip
+SET JAR=selenium-server-standalone-2.39.0.jar
+SET IEDRIVERZIP=IEDriverServer_Win32_2.39.0.zip
 SET IEDRIVER=IEDriverServer.exe
 SET "WGET=C:\Program Files (x86)\GnuWin32\bin\wget.exe"
  
 ECHO *********************************************
 ECHO *
 ECHO * WebDriver Grid Node
-ECHO * It requires that a WebDriver JSON Hub is already running, usually on port 5555.
+ECHO * It requires that a WebDriver JSON Hub is already running, usually on port 4444 .
 ECHO * You can run more than one of these if each has its own JSON config file.
 ECHO *
 ECHO *********************************************

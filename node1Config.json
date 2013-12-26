@@ -6,13 +6,14 @@
             "acceptSslCerts": true,
             "javascriptEnabled": true,
             "takesScreenshot": false,
-            "browser-version": "23.0.1",  
+            "browser-version": "26",  
             "platform": "WINDOWS",                     
             "maxInstances": 3
         },
         {
             "browserName": "chrome",
 			"acceptSslCerts": true,
+			"browser-version": "31",
             "maxInstances": 3,
             "platform": "WINDOWS"
         },

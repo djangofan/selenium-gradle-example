@@ -7,12 +7,13 @@
             "javascriptEnabled": true,
             "takesScreenshot": false,
             "firefox_profile": "",
-            "browser-version": "23.0.1",  
+            "browser-version": "26",  
             "platform": "LINUX",                     
             "maxInstances": 5
         },
         {
             "browserName": "chrome",
+			"browser-version": "31",
             "maxInstances": 5,
             "platform": "LINUX"
         }
